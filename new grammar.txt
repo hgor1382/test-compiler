@@ -1,0 +1,55 @@
+Goal -> (Statement)*
+Statement -> DeclareationStatement | AssighmentStatement | DeclAssignStatement | ConditionStatement | LoopStatement
+
+ConditionStatement -> IfStatement  ElifStatement*  ElseStatement?                        
+                        
+IfStatement -> if Condition : begin AssighmentStatement* end
+
+ElifStatement -> elif Condition : begin AssighmentStatement* end
+
+ElseStatement -> else : begin AssighmentStatement* end
+
+LoopStatement -> loopc Condition : begin AssighmentStatement* end
+
+Condition -> Expr
+
+DeclareationStatement -> int Variable (, Variable)* ;
+
+DeclAssignStatement -> int Variable (, Variable)* = Value (, Value)* ;
+
+AssighmentStatement -> Variable Assign Value;
+
+
+
+
+
+                   
+Assign -> = | += | -= | /= | *= | %=
+
+Variable -> ID
+
+Value -> Expr
+
+Expr -> Disjunction 
+
+Disjunction -> Disjunction or Conjunction | Conjunction
+
+Conjunction -> Conjunction and Comarison | Comarison
+
+Comarison -> Comarison == Equality | Comarison != Equality | Equality
+
+Equality -> Equality >= MoreLessEquality | Equality <= MoreLessEquality | MoreLessEquality
+
+MoreLessEquality -> MoreLessEquality > MoreLess | MoreLessEquality < MoreLess | MoreLess
+
+MoreLess -> MoreLess + Term | MoreLess - Term | Term
+
+Term -> Term * Power | Term / Power | Term % Power | Factor
+
+Power -> Factor ^ Power | Factor
+
+Factor -> (Expr) | ID | number
+
+ID -> [a,...,z,A,...,Z]+
+
+number -> [0,...,9]+
